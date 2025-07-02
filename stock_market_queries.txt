@@ -1,0 +1,56 @@
+- 1. Show the latest 5 trading days
+SELECT trade_date 
+FROM market_data
+LIMIT 5;
+
+-- 2. Find the highest Bitcoin price
+
+USE stock_data;
+SELECT MAX(bitcoin_price) AS highest_btc_price 
+FROM market_data;
+
+-- 3. Find the average Ethereum volume
+
+SELECT AVG(ethereum_vol) AS avg_eth_volume 
+FROM market_data;
+
+-- 4. Show Tesla’s daily price trend
+ 
+SELECT trade_date, tesla_price
+FROM market_data
+ORDER BY trade_date;
+
+-- 5. Compare Amazon vs Meta prices on same days
+SELECT trade_date, amazon_price, meta_price
+FROM market_data
+ORDER BY trade_date;
+
+-- 6. Find the day with highest Bitcoin trading volume
+
+ SELECT AVG(`SP500_Price`) AS avg_sp500
+FROM market_data;
+
+-- 7. Total trading volume of Apple
+ 
+SELECT SUM(apple_vol) AS total_apple_volume
+FROM market_data;
+
+-- 8. Find lowest Microsoft price
+
+SELECT MIN(microsoft_price) AS min_microsoft_price
+FROM market_data;
+
+-- 9. Average Crude Oil price per week (grouped weekly)
+ SELECT 
+  YEAR(trade_date) AS year,
+  WEEK(trade_date) AS week_number,
+  ROUND(AVG(crude_oil_price), 2) AS avg_weekly_crude_price
+FROM market_data
+GROUP BY YEAR(trade_date), WEEK(trade_date)
+ORDER BY year, week_number;
+
+ -- 10. Top 5 highest-volume trading days for Apple
+SELECT trade_date, apple_vol
+FROM market_data
+ORDER BY apple_vol DESC
+LIMIT 5;
